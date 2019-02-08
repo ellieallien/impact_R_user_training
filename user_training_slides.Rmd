@@ -37,11 +37,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 # 1.1. A) Data Unit capacity building framework
-## ![asdf](../strategy/capacity_building_scheme.jpg)
-## ![asdf](../strategy/capacity_building_scheme2.jpg)
-## ![asdf](../strategy/capacity_building_scheme3.jpg)
-## ![asdf](../strategy/capacity_building_scheme4.jpg)
-## ![asdf](../strategy/capacity_building_scheme5.jpg)
+## ![asdf](./include/capacity_building_scheme.jpg)
+## ![asdf](./include/capacity_building_scheme.jpg)
+## ![asdf](./include/capacity_building_scheme.jpg)
+## ![asdf](./include/capacity_building_scheme.jpg)
+## ![asdf](./include/capacity_building_scheme.jpg)
+
 ## Feedback / Questions?
 
 # 1.1. B) Expected learnings
@@ -80,18 +81,19 @@ colSums
 ```
 
 
-**WHAT DOES THIS MEAN?**
+**THIS CHANGES EVERYTHING!!! WHY?**
 
 
 ## A package
-a set of functions
 
-- solves a specific problem 
-- Standardised
-- Reliable
-- Accessible
-- "Stackable": can be used in other functions/packages
-- Shared through a standardised channel
+
+a collection of functions that solve a specific problem
+  - Standardised
+  - Reliable
+  - Documented
+  - locked & hidden details
+  - "Stackable": can be used in other functions/packages
+  - Shared through a standardised channel
 
 ## A package: Example
 
@@ -101,7 +103,7 @@ movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), he
 mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
 ```
 
-```{R,echo=T}
+```{R,echo=T,eval=F}
 install.packages("UpSetR")
 library("UpSetR")
 
@@ -111,8 +113,11 @@ library("UpSetR")
 upset(movies, nsets = 6)
 ```
 
+```{r}
+upset
+```
 ## R Packages
-### ![number of R packages](../useR/external/number_of_R_packages.svg)
+![number of R packages](../useR/external/number_of_R_packages.svg)
 [source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
 
 ## Finding Packages
@@ -122,23 +127,66 @@ upset(movies, nsets = 6)
 - https://rseek.org/
 - the classics: tidyverse, sf, lubridate, survey, magrittr, rmarkdown 
 
-## Installing Packages 
+## Accessing Packages from CRAN
 
+### Install
 ```{r, eval=F,echo=T}
 install.packages("ggplot2")
 ```
 
-## Using
+### Load 
 ```{r, eval=F,echo=T,warning=FALSE,message=FALSE}
 library("ggplot2")
+```
 
+### Learn
+```{r,eval=F,echo=T}
 ?ggplot2
-
 browseVignettes("ggplot2")
-
 ?ggplot2::geom_histogram
+```
 
-```  
+## Accessing Packages from Github
+### Detour: Gitwhat?
+- a platform for code:
+  - publish
+  - version control
+  - collaborate
+
+
+### Install
+```{r, eval=F,echo=T}
+remotes::install_github("ellieallien/cleaninginspectoR"
+                        # ,
+                        # build_opts = c()
+                        )
+```
+
+### Load 
+```{r, eval=F,echo=T,warning=FALSE,message=FALSE}
+library("cleaninginspectoR")
+```
+
+### Learn
+
+```{r,eval=F,echo=T}
+# ?cleaninginspectoR
+# browseVignettes("cleaninginspectoR")
+# ?
+```
+
+List all package functions
+```{r,echo=T,eval=F}
+ls("package:cleaninginspectoR")
+```
+```{r}
+knitr::kable(data.frame("contents"=ls("package:cleaninginspectoR")),format="html")
+```
+Use!
+```{r, echo=T}
+# find_outliers(some_data)
+```
+
 
 ## installing R packages: from Github
 	- detour: github issues
