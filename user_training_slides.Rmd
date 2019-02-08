@@ -1,0 +1,204 @@
+---
+title: "IMPACT R user training"
+author: ""
+date: "5 February 2019"
+output:
+  revealjs::revealjs_presentation:
+    transition: fade
+    css: style.css
+    toc: true
+width: 1920
+height: 1080
+---
+
+```{r setup, include=FALSE}
+# ioslides_presentation slidy_presentation
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Overview
+
+- Session 1.1 Impact Data Unit Capacity Building Framework 
+- Session 1.2
+- Session 1.3
+- Session 1.4
+
+- Session 2.1
+- Session 2.2
+- Session 2.3
+- Session 2.4
+
+- Session 3.1
+- Session 3.2
+
+
+
+
+# 1.1. A) Data Unit capacity building framework
+## ![asdf](../strategy/capacity_building_scheme.jpg)
+## ![asdf](../strategy/capacity_building_scheme2.jpg)
+## ![asdf](../strategy/capacity_building_scheme3.jpg)
+## ![asdf](../strategy/capacity_building_scheme4.jpg)
+## ![asdf](../strategy/capacity_building_scheme5.jpg)
+## Feedback / Questions?
+
+# 1.1. B) Expected learnings
+## Accessing Impact R Tools
+- NOT: using an IMPACT tool
+- Instead: accessing all current/future IMPACT tools
+- ..with concrete examples
+
+## Examples
+- simple data cleaning checks
+- quantitative analysis
+    - weighted aggregation
+    - hypothesis tests
+    - confidence intervals
+    - barchart (with error bars)
+    - heatmaps
+    - .... (all adjusted for stratification & clustering)
+
+# why R is Powerful
+## *a primitive function*: R commands
+```{r,echo=T}
+sum(1,1)
+```
+
+## *a function*: A few lines of code turned into a new command
+```{r,include=F}
+some_data<-data.frame(some_variable=rnorm(100),another_variable=rnorm(100)+1.5)
+```
+
+```{r,echo=TRUE}
+colSums(some_data)
+```
+The code behind:
+```{r}
+colSums
+```
+
+
+**WHAT DOES THIS MEAN?**
+
+
+## A package
+a set of functions
+
+- solves a specific problem 
+- Standardised
+- Reliable
+- Accessible
+- "Stackable": can be used in other functions/packages
+- Shared through a standardised channel
+
+## A package: Example
+
+```{r,include=FALSE}
+library("UpSetR")
+movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), header=T, sep=";" )
+mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
+```
+
+```{R,echo=T}
+install.packages("UpSetR")
+library("UpSetR")
+
+```
+
+```{R,echo=T}
+upset(movies, nsets = 6)
+```
+
+## R Packages
+### ![number of R packages](../useR/external/number_of_R_packages.svg)
+[source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
+
+## Finding Packages
+
+- google _"how to .... in R"_
+- keep learning
+- https://rseek.org/
+- the classics: tidyverse, sf, lubridate, survey, magrittr, rmarkdown 
+
+## Installing Packages 
+
+```{r, eval=F,echo=T}
+install.packages("ggplot2")
+```
+
+## Using
+```{r, eval=F,echo=T,warning=FALSE,message=FALSE}
+library("ggplot2")
+
+?ggplot2
+
+browseVignettes("ggplot2")
+
+?ggplot2::geom_histogram
+
+```  
+
+## installing R packages: from Github
+	- detour: github issues
+
+#### 0.2 IMPACT sharing system 
+- (slides?)
+- IMPACT tool sharing system [impact R packages](https://rpubs.com/impact_dataunit/462794) explained and shown
+
+#### 0.2.2 example
+- quickly show: datacleaning installation, accessing vignettes
+
+## ~COFFEE BREAK~
+
+## SESSION 1.1.2. PRACTICE: INSTALL, LEARN & USE DATACLEANINGCHECKS 
+
+### (slide) Steps:
+- _The Data Cleaning Checks Tool_
+	- find the package on the repository list
+	- run the install code
+	- browse the vignettes; Read the "quickstart" vignette
+	- load your data
+	- read the vignette of the function(s) you are going to use
+	- run the data cleaning checks on your data; save the results in a variable
+	- save the list of potential issues in a csv file.
+
+solution: `read.csv("mydata.csv") %>% data_cleaning_checks %>% write.csv`
+
+### Bonus
+- file a feature request on the github issues page
+
+### SESSION 1.1 CLOSE: 
+- Q&A
+- _FEEDBACK_
+
+
+## SESSION 1.2 (something fun)
+
+# DAY 2
+
+## SESSION 2.1.1 Analysis Guidelines review
+
+## SESSION 2.1.2 hypegrammaR (theory)
+
+## ~COFFEE BREAK~
+
+## SESSION 2.2.1 hypegrammaR practice: installation & setup
+
+## SESSION 2.2.2 hypegrammaR practice: try out hypegrammaR on a real data set
+
+
+# DAY 3
+## SESSION 3.1.1: grand finale
+- Q&A
+- THE TEST DADADADADA
+- chamapgne
+
+## SESSION 3.2.2: BONUS SESSION
+- tidyverse?
+- rmarkdown: the gold standard of reproducible data science
+- custom functions / building tools for yourself
+
+
+
