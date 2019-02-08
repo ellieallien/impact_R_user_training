@@ -212,13 +212,13 @@ library("cleaninginspectoR")
 ### Learn
 
 ```{r,eval=F,echo=T}
-# ?cleaninginspectoR
-# browseVignettes("cleaninginspectoR")
+?cleaninginspectoR
+browseVignettes("cleaninginspectoR")
 # ?
 ```
 
 List all package functions
-```{r,echo=T,eval=F}
+```{r,echo=T,eval=T}
 ls("package:cleaninginspectoR")
 ```
 ```{r,echo=F}

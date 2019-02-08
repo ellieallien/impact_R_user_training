@@ -558,7 +558,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2><em>a function</em>: A few lines of code turned into a new command</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colSums</span>(some_data)</code></pre></div>
 <pre><code>##    some_variable another_variable 
-##         3.886749       153.622394</code></pre>
+##         1.026911       149.719165</code></pre>
 <p>The code behind:</p>
 <pre><code>## function (x, na.rm = FALSE, dims = 1L) 
 ## {
@@ -581,7 +581,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ##     else names(z) &lt;- dimnames(x)[[dims + 1L]]
 ##     z
 ## }
-## &lt;bytecode: 0x000000001dd4ee08&gt;
+## &lt;bytecode: 0x000000001dd3ec20&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p><strong>THIS CHANGES EVERYTHING!!! WHY?</strong></p>
 </section><section id="a-package" class="slide level2">
@@ -822,8 +822,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h3 id="load-1">Load</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;cleaninginspectoR&quot;</span>)</code></pre></div>
 <h3 id="learn-1">Learn</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ?cleaninginspectoR</span>
-<span class="co"># browseVignettes(&quot;cleaninginspectoR&quot;)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?cleaninginspectoR
+<span class="kw">browseVignettes</span>(<span class="st">&quot;cleaninginspectoR&quot;</span>)
 <span class="co"># ?</span></code></pre></div>
 <p>List all package functions</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>(<span class="st">&quot;package:cleaninginspectoR&quot;</span>)</code></pre></div>
