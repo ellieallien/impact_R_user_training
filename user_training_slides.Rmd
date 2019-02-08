@@ -20,10 +20,37 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Overview
 
-- Session 1.1 Impact Data Unit Capacity Building Framework 
-- Session 1.2
-- Session 1.3
-- Session 1.4
+## Learning Goals
+
+## Accessing Impact R Tools
+
+- NOT: using an IMPACT tool
+- Instead: accessing all current/future IMPACT tools
+- ..with concrete examples
+
+## Examples
+
+- simple data cleaning checks
+- quantitative analysis
+    - weighted aggregation
+    - hypothesis tests
+    - confidence intervals
+    - barchart (with error bars)
+    - heatmaps
+    - .... (all adjusted for stratification & clustering)
+
+
+## Curriculum
+
+- Day 1
+    - Session 1.1
+        - Overview
+        - Impact Data Unit Capacity Building Framework
+        - Expected learnings
+        - Why R is Powerful
+    - Session 1.2
+    - Session 1.3
+    - Session 1.4
 
 - Session 2.1
 - Session 2.2
@@ -35,39 +62,24 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 
-
-# 1.1. A) Data Unit capacity building framework
+# 1.1.1 Data Unit capacity building framework
 ## ![asdf](./include/capacity_building_scheme.jpg)
-## ![asdf](./include/capacity_building_scheme.jpg)
-## ![asdf](./include/capacity_building_scheme.jpg)
-## ![asdf](./include/capacity_building_scheme.jpg)
-## ![asdf](./include/capacity_building_scheme.jpg)
+## ![asdf](./include/capacity_building_scheme2.jpg)
+## ![asdf](./include/capacity_building_scheme3.jpg)
+## ![asdf](./include/capacity_building_scheme4.jpg)
+## ![asdf](./include/capacity_building_scheme5.jpg)
 
 ## Feedback / Questions?
 
-# 1.1. B) Expected learnings
-## Accessing Impact R Tools
-- NOT: using an IMPACT tool
-- Instead: accessing all current/future IMPACT tools
-- ..with concrete examples
 
-## Examples
-- simple data cleaning checks
-- quantitative analysis
-    - weighted aggregation
-    - hypothesis tests
-    - confidence intervals
-    - barchart (with error bars)
-    - heatmaps
-    - .... (all adjusted for stratification & clustering)
-
-# why R is Powerful
+# 1.1.3 why R is Powerful
 ## *a primitive function*: R commands
 ```{r,echo=T}
 sum(1,1)
 ```
 
 ## *a function*: A few lines of code turned into a new command
+
 ```{r,include=F}
 some_data<-data.frame(some_variable=rnorm(100),another_variable=rnorm(100)+1.5)
 ```
@@ -75,27 +87,38 @@ some_data<-data.frame(some_variable=rnorm(100),another_variable=rnorm(100)+1.5)
 ```{r,echo=TRUE}
 colSums(some_data)
 ```
+
 The code behind:
 ```{r}
 colSums
 ```
 
-
 **THIS CHANGES EVERYTHING!!! WHY?**
+
 
 
 ## A package
 
 
 a collection of functions that solve a specific problem
-  - Standardised
-  - Reliable
-  - Documented
-  - locked & hidden details
-  - "Stackable": can be used in other functions/packages
-  - Shared through a standardised channel
 
-## A package: Example
+- Standardised
+- Reliable
+- Documented
+- locked & hidden details
+- "Stackable": can be used in other functions/packages
+- Shared through a standardised channel
+
+## the Result
+![number of R packages](../useR/external/number_of_R_packages.svg)
+[source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
+
+
+
+
+# tool Sharing System: in R + at IMPACT
+
+## Accessing R packages: Example
 
 ```{r,include=FALSE}
 library("UpSetR")
@@ -106,7 +129,6 @@ mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR
 ```{R,echo=T,eval=F}
 install.packages("UpSetR")
 library("UpSetR")
-
 ```
 
 ```{R,echo=T}
@@ -116,9 +138,11 @@ upset(movies, nsets = 6)
 ```{r}
 upset
 ```
+
 ## R Packages
 ![number of R packages](../useR/external/number_of_R_packages.svg)
 [source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
+
 
 ## Finding Packages
 
@@ -148,22 +172,40 @@ browseVignettes("ggplot2")
 
 ## Accessing Packages from Github
 ### Detour: Gitwhat?
-- a platform for code:
-  - publish
-  - version control
-  - collaborate
+
+- *git*: a system to manage code projects
+    - track and save changes (rewind!)
+    - manage parallel versions
+    - merge versions
+    - collaborate
+
+
+- *Github* online platform for git
+    - collaborate online
+    - share code
+    - interact with users/developers
+      - bug reports
+      - feature requests
+      - _not_: asking for help
+
+
+example 1: [This Presentation](https://github.com/mabafaba/impact_R_user_training/)
+
+example 2: [the 2019 MSNA tool](https://github.com/mabafaba/msna18/network)
+
+example 3: [issues (ggplot2)](https://github.com/tidyverse/ggplot2/issues)
+
 
 
 ### Install
 ```{r, eval=F,echo=T}
-remotes::install_github("ellieallien/cleaninginspectoR"
-                        # ,
-                        # build_opts = c()
+remotes::install_github("ellieallien/cleaninginspectoR",
+                        build_opts = c()
                         )
 ```
 
 ### Load 
-```{r, eval=F,echo=T,warning=FALSE,message=FALSE}
+```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
 library("cleaninginspectoR")
 ```
 
@@ -179,7 +221,7 @@ List all package functions
 ```{r,echo=T,eval=F}
 ls("package:cleaninginspectoR")
 ```
-```{r}
+```{r,echo=F}
 knitr::kable(data.frame("contents"=ls("package:cleaninginspectoR")),format="html")
 ```
 Use!
@@ -188,36 +230,38 @@ Use!
 ```
 
 
-## installing R packages: from Github
-	- detour: github issues
+## Getting Started with IMPACT R tools
 
-#### 0.2 IMPACT sharing system 
-- (slides?)
-- IMPACT tool sharing system [impact R packages](https://rpubs.com/impact_dataunit/462794) explained and shown
+1. Got to https://rpubs.com/impact_dataunit/impactpackages
+2. Follow instructions
 
-#### 0.2.2 example
-- quickly show: datacleaning installation, accessing vignettes
+## Questions?
 
-## ~COFFEE BREAK~
+... and feedback?
 
-## SESSION 1.1.2. PRACTICE: INSTALL, LEARN & USE DATACLEANINGCHECKS 
+# ~ COFFEE / TEE / NAPS ~
+
+# SESSION 1.2. HANDS ON!
 
 ### (slide) Steps:
+
 - _The Data Cleaning Checks Tool_
-	- find the package on the repository list
-	- run the install code
-	- browse the vignettes; Read the "quickstart" vignette
-	- load your data
-	- read the vignette of the function(s) you are going to use
-	- run the data cleaning checks on your data; save the results in a variable
-	- save the list of potential issues in a csv file.
+  	- find the package on the repository list: https://rpubs.com/impact_dataunit/impactpackages
+  	- install the package
+  	- browse the vignettes; Read the "quickstart" vignette
+  	- load your data
+  	- read the vignette of the function(s) you are going to use
+  	- run the data cleaning checks on your data
+  	- save the results to a csv file.
 
 solution: `read.csv("mydata.csv") %>% data_cleaning_checks %>% write.csv`
 
 ### Bonus
-- file a feature request on the github issues page
 
-### SESSION 1.1 CLOSE: 
+- file a feature request on the github issues page 
+
+### SESSION 1.1 CLOSE:
+
 - Q&A
 - _FEEDBACK_
 
