@@ -1,12 +1,13 @@
 ---
 title: "IMPACT R user training"
 author: ""
-date: "5 February 2019"
+date: "11-13th February 2019"
 output:
   revealjs::revealjs_presentation:
     transition: fade
     css: style.css
     toc: true
+  
 width: 1920
 height: 1080
 ---
@@ -16,66 +17,90 @@ height: 1080
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# General Strategy {data-background="background.svg"}
+
+## IMPACT strategy:
+
+- More Work 
+
+## Data Unit Strategy: {data-background="background.svg"}
+
+- More work => Deeper Analysis
+- More work => Fewer Errors
+- More work => Less Work
 
 
-# Overview
+## Components {data-background="background.svg"}
 
-## Learning Goals
+- Culture
+- *Capacity* 
+- Processes
+- Sustainable Change
 
-## Accessing Impact R Tools
+# Data Unit capacity building framework {data-background="background.svg"}
 
-- NOT: using an IMPACT tool
-- Instead: accessing all current/future IMPACT tools
-- ..with concrete examples
+## ![cbs](./include/capacity_building_scheme.jpg)  {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme2.jpg) {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme3.jpg) {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme4.jpg) {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme5.jpg) {data-background="background.svg"}
 
-## Examples
+# Learning Goals {data-background="background.svg"}
+
+## NOT the learning Goals {data-background="background.svg"}
+
+- *Not* a training on specific tools
+- *Not* a data science degree in 2 days
+  - (not statistics)
+  - (not generic R)
+  - (not quantitative research methods)
+
+
+## NOT NOT the learning Goals {data-background="background.svg"}
+
+_"Not a training on specific tools"_
+
+- *Instead*: how to access and use all current and future (R) tools developed in IMPACT
+- (..with specific tools as concrete examples)
+
+## Examples {data-background="background.svg"}
 
 - simple data cleaning checks
-- quantitative analysis
-    - weighted aggregation
-    - hypothesis tests
-    - confidence intervals
-    - barchart (with error bars)
-    - heatmaps
-    - .... (all adjusted for stratification & clustering)
+- Analysing random samples (in line with Guidelines)
 
+# Agenda {data-background="background.svg"}
 
-## Curriculum
+## day 1 {data-background="background.svg"}
 
-- Day 1
-    - Session 1.1
-        - Overview
-        - Impact Data Unit Capacity Building Framework
-        - Expected learnings
-        - Why R is Powerful
-    - Session 1.2
-    - Session 1.3
-    - Session 1.4
+- 09:00 - 10:30 Prerequisite test / Introduction / Overview
+- 11:00 - 13:00 Sharing Tools in R / at Impact
+- 14:00 - 16:00 Practical Session 1A
+- 16:30 - 18:00 Practical Session 1B
 
-- Session 2.1
-- Session 2.2
-- Session 2.3
-- Session 2.4
+## day 2 {data-background="background.svg"}
 
-- Session 3.1
-- Session 3.2
+- 09:00 - 10:30 Analysis Guidelines: With great power great responsibility
+- 11:00 - 13:00 The "hypegrammaR" package: R implementation of the guidelines
+- 14:00 - 16:00 Practical Session 2A
+- 16:30 - 18:00 Practical Session 2B
 
+## day 3 {data-background="background.svg"}
 
+- 09:00 - 10:30 Certification Test
+- 11:00 - 13:00 Bonus session: Going beyond
 
-# 1.1.1 Data Unit capacity building framework
-## ![asdf](./include/capacity_building_scheme.jpg)
-## ![asdf](./include/capacity_building_scheme2.jpg)
-## ![asdf](./include/capacity_building_scheme3.jpg)
-## ![asdf](./include/capacity_building_scheme4.jpg)
-## ![asdf](./include/capacity_building_scheme5.jpg)
-
-## Feedback / Questions?
+## Feedback / Questions? {data-background="background.svg"}
 
 
 # 1.1.3 why R is Powerful
+
 ## *a primitive function*: R commands
 ```{r,echo=T}
 sum(1,1)
+```
+
+```{r,echo=T}
+sum
 ```
 
 ## *a function*: A few lines of code turned into a new command
@@ -89,12 +114,18 @@ colSums(some_data)
 ```
 
 The code behind:
-```{r}
+```{r,echo=T}
 colSums
 ```
 
 **THIS CHANGES EVERYTHING!!! WHY?**
 
+## a "complicated" function
+
+```{r, echo=T}
+library(keras)
+application_resnet50
+```
 
 
 ## A package
@@ -114,11 +145,9 @@ a collection of functions that solve a specific problem
 [source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
 
 
+## Questions/Feedback?
 
-
-# tool Sharing System: in R + at IMPACT
-
-## Accessing R packages: Example
+# Accessing R Packages
 
 ```{r,include=FALSE}
 library("UpSetR")
@@ -126,67 +155,63 @@ movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), he
 mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
 ```
 
+## Finding Packages
+
+- google _"how to .... in R"_
+- tutorials
+- https://rseek.org/
+- the classics: tidyverse, sf, lubridate, survey, magrittr, rmarkdown 
+
+- RStudio conference (youtube)
+- Twitter
+
+
+## Install
 ```{R,echo=T,eval=F}
 install.packages("UpSetR")
+```
+
+## Load
+```{r,echo=T,eval=F}
 library("UpSetR")
 ```
 
+## Learn
+```{r,echo=T,eval=F}
+?UpSetR
+?upset
+```
+
+## Use
 ```{R,echo=T}
 upset(movies, nsets = 6)
 ```
 
-```{r}
+## Behind the curtains
+```{r,echo=T}
 upset
 ```
 
-## R Packages
-![number of R packages](../useR/external/number_of_R_packages.svg)
-[source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
+full source code: google _"PACKAGENAME site:www.github.com"_
 
+# R Packages on Github
 
-## Finding Packages
+## Gitwhat?
 
-- google _"how to .... in R"_
-- keep learning
-- https://rseek.org/
-- the classics: tidyverse, sf, lubridate, survey, magrittr, rmarkdown 
-
-## Accessing Packages from CRAN
-
-### Install
-```{r, eval=F,echo=T}
-install.packages("ggplot2")
-```
-
-### Load 
-```{r, eval=F,echo=T,warning=FALSE,message=FALSE}
-library("ggplot2")
-```
-
-### Learn
-```{r,eval=F,echo=T}
-?ggplot2
-browseVignettes("ggplot2")
-?ggplot2::geom_histogram
-```
-
-## Accessing Packages from Github
-### Detour: Gitwhat?
-
-- *git*: a system to manage code projects
+## *git*: a system to manage code projects
     - track and save changes (rewind!)
     - manage parallel versions
     - merge versions
     - collaborate
 
 
-- *Github* online platform for git
+## *Github* an online platform for git
     - collaborate online
     - share code
     - interact with users/developers
       - bug reports
-      - feature requests
-      - _not_: asking for help
+        - feature requests
+        - _not_: asking for help
 
 
 example 1: [This Presentation](https://github.com/mabafaba/impact_R_user_training/)
@@ -197,36 +222,42 @@ example 3: [issues (ggplot2)](https://github.com/tidyverse/ggplot2/issues)
 
 
 
-### Install
+## Installing R packages from Github
 ```{r, eval=F,echo=T}
 remotes::install_github("ellieallien/cleaninginspectoR",
                         build_opts = c()
                         )
 ```
 
-### Load 
+- "USERNAME/REPOSITORYNAME"
+- `build_opts=c()`: also download the manual (see `?remotes::install_github`)
+
+## Load 
 ```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
 library("cleaninginspectoR")
 ```
 
 ### Learn
-
+Overview:
 ```{r,eval=F,echo=T}
 ?cleaninginspectoR
-browseVignettes("cleaninginspectoR")
-# ?
 ```
-
-List all package functions
-```{r,echo=T,eval=T}
+Manuals / Help Documents
+```{r,eval=F,echo=T}
+browseVignettes("cleaninginspectoR")
+```
+List all functions
+```{r,echo=T,eval=F}
 ls("package:cleaninginspectoR")
 ```
+Type `Packagename::` and hit `tab` to see available functions
+
 ```{r,echo=F}
 knitr::kable(data.frame("contents"=ls("package:cleaninginspectoR")),format="html")
 ```
 Use!
 ```{r, echo=T}
-# find_outliers(some_data)
+find_outliers(some_data)
 ```
 
 
