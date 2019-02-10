@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Components {data-background="background.svg"}
 
 - Culture
-- *Capacity* 
+- **Capacity**
 - Processes
 - Sustainable Change
 
@@ -51,9 +51,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - *Not* a training on specific tools
 - *Not* a data science degree in 2 days
-  - (not statistics)
-  - (not generic R)
-  - (not quantitative research methods)
+    - (not statistics)
+    - (not generic R)
+    - (not quantitative research methods)
 
 
 ## NOT NOT the learning Goals {data-background="background.svg"}
@@ -66,7 +66,7 @@ _"Not a training on specific tools"_
 ## Examples {data-background="background.svg"}
 
 - simple data cleaning checks
-- Analysing random samples (in line with Guidelines)
+- Basic analysis of random samples (in line with Guidelines)
 
 # Agenda {data-background="background.svg"}
 
@@ -198,20 +198,24 @@ full source code: google _"PACKAGENAME site:www.github.com"_
 
 ## Gitwhat?
 
-## *git*: a system to manage code projects
-    - track and save changes (rewind!)
-    - manage parallel versions
-    - merge versions
-    - collaborate
+## *git*
+
+### a system to manage code projects
+
+- track and save changes (rewind!)
+- manage parallel versions
+- merge versions
+- collaborate
 
 
-## *Github* an online platform for git
-    - collaborate online
-    - share code
-    - interact with users/developers
+### *Github* an online platform for git
+
+- collaborate online
+- share code
+- interact with users/developers
       - bug reports
-        - feature requests
-        - _not_: asking for help
+      - feature requests
+      - _not_: asking for help
 
 
 example 1: [This Presentation](https://github.com/mabafaba/impact_R_user_training/)
@@ -230,7 +234,7 @@ remotes::install_github("ellieallien/cleaninginspectoR",
 ```
 
 - "USERNAME/REPOSITORYNAME"
-- `build_opts=c()`: also download the manual (see `?remotes::install_github`)
+- `build_opts=c()`: makes sure to also download the manual (see `?remotes::install_github`)
 
 ## Load 
 ```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
