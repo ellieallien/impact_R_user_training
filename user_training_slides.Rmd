@@ -7,9 +7,6 @@ output:
     transition: fade
     css: style.css
     toc: true
-  
-width: 1920
-height: 1080
 ---
 
 ```{r setup, include=FALSE}
@@ -208,14 +205,16 @@ full source code: google _"PACKAGENAME site:www.github.com"_
 - collaborate
 
 
-### *Github* an online platform for git
+## *Github*
+
+### an online platform for git
 
 - collaborate online
 - share code
 - interact with users/developers
       - bug reports
       - feature requests
-      - _not_: asking for help
+      - _not_: asking for help (stackoverflow!)
 
 
 example 1: [This Presentation](https://github.com/mabafaba/impact_R_user_training/)
@@ -242,6 +241,7 @@ library("cleaninginspectoR")
 ```
 
 ### Learn
+
 Overview:
 ```{r,eval=F,echo=T}
 ?cleaninginspectoR

@@ -96,7 +96,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
     <style type="text/css">code{white-space: pre;}</style>
 
-    <link href="data:text/css;charset=utf-8,%2Ereveal%20section%20img%20%7B%20background%3A%20rgba%28255%2C%20255%2C%20255%2C%200%2E12%29%20%21important%3B%20border%3A%20none%20%21important%3B%0Abox%2Dshadow%3A%200%200%200px%20rgba%281%2C%200%2C%200%2C%200%2E5%29%20%21important%3B%0Amargin%3A%200px%20%21important%3B%0Aheight%3A100%25%20%21important%3B%20%7D%0A%2EsourceCode%7B%0Afont%2Dsize%3A%201%2E1em%20%21important%3B%0A%7D%0Acode%7B%0Afont%2Dsize%3A%201%2E1em%20%21important%0A%7D%0A%2Enavigate%2Dright%20%2Enavigate%2Dleft%20%2Enavigate%2Dup%20%2Enavigate%2Ddown%20%7B%0Avisibility%3A%20hidden%3B%09%7D" rel="stylesheet" />
+    <link href="data:text/css;charset=utf-8,%2Ereveal%20section%20img%20%7B%20background%3A%20rgba%28255%2C%20255%2C%20255%2C%200%2E12%29%20%21important%3B%20border%3A%20none%20%21important%3B%0Abox%2Dshadow%3A%200%200%200px%20rgba%281%2C%200%2C%200%2C%200%2E5%29%20%21important%3B%0Amargin%3A%200px%20%21important%3B%0Aheight%3A100%25%20%21important%3B%20%7D%0A%2EsourceCode%7B%0A%0A%7D%0Acode%7B%0Afont%2Dsize%3A%201em%20%21important%0A%7D%0A%2Enavigate%2Dright%20%2Enavigate%2Dleft%20%2Enavigate%2Dup%20%2Enavigate%2Ddown%20%7B%0Avisibility%3A%20hidden%3B%09%7D" rel="stylesheet" />
 
 <!-- Printing and PDF exports -->
 <script id="paper-css" type="application/dynamic-css">
@@ -582,7 +582,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2><em>a function</em>: A few lines of code turned into a new command</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colSums</span>(some_data)</code></pre></div>
 <pre><code>##    some_variable another_variable 
-##        -5.683822       129.461462</code></pre>
+##        -1.188277       151.372806</code></pre>
 <p>The code behind:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colSums</code></pre></div>
 <pre><code>## function (x, na.rm = FALSE, dims = 1L) 
@@ -606,7 +606,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ##     else names(z) &lt;- dimnames(x)[[dims + 1L]]
 ##     z
 ## }
-## &lt;bytecode: 0x000000001ab79a28&gt;
+## &lt;bytecode: 0x000000001ab74e10&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p><strong>THIS CHANGES EVERYTHING!!! WHY?</strong></p>
 </section><section id="a-complicated-function" class="slide level2">
@@ -844,7 +844,9 @@ application_resnet50</code></pre></div>
 <li>merge versions</li>
 <li>collaborate</li>
 </ul>
-<h3 id="github-an-online-platform-for-git"><em>Github</em> an online platform for git</h3>
+</section><section id="github" class="slide level2">
+<h2><em>Github</em></h2>
+<h3 id="an-online-platform-for-git">an online platform for git</h3>
 <ul>
 <li>collaborate online</li>
 <li>share code</li>
@@ -852,7 +854,7 @@ application_resnet50</code></pre></div>
 <ul>
 <li>bug reports</li>
 <li>feature requests</li>
-<li><em>not</em>: asking for help</li>
+<li><em>not</em>: asking for help (stackoverflow!)</li>
 </ul></li>
 </ul>
 <p>example 1: <a href="https://github.com/mabafaba/impact_R_user_training/">This Presentation</a></p>
@@ -1005,11 +1007,6 @@ sensitive_columns
         transition: 'fade', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1920,
-        height: 1080,
 
 
 
