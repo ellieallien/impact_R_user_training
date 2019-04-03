@@ -14,6 +14,20 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Not a smooth ride
+
+## Questions!
+
+- questions are everything!
+- Might feel hard because there are so MANY easy things at once
+- You are here because you are really talented
+
+## This is a Pilot
+
+- Stuff will go wrong
+- I need your feedback
+- No one in the humanitarian system has (successfully) done this before
+
 # General Strategy {data-background="background.svg"}
 
 ## IMPACT strategy:
@@ -78,12 +92,13 @@ _"Not a training on specific tools"_
 
 - 09:00 - 10:30 Analysis Guidelines: With great power great responsibility
 - 11:00 - 13:00 The "hypegrammaR" package: R implementation of the guidelines
-- 14:00 - 16:00 Practical Session 2A
-- 16:30 - 18:00 Practical Session 2B
+- 14:00 - 14:30 **R Environments and structuring self contained projects**
+- 14:30 - 16:00 Practical Session 2
+- 16:30 - 18:00 **Brainstorm**
 
 ## day 3 {data-background="background.svg"}
 
-- 09:00 - 10:30 Certification Test
+- 09:00 - 10:30 **Certification Test: Work on solutions**
 - 11:00 - 13:00 Bonus session: Going beyond
 
 ## Feedback / Questions? {data-background="background.svg"}
@@ -157,6 +172,8 @@ mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR
 - google _"how to .... in R"_
 - tutorials
 - https://rseek.org/
+- https://awesome-r.com/
+- https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages
 - the classics: tidyverse, sf, lubridate, survey, magrittr, rmarkdown 
 
 - RStudio conference (youtube)
@@ -226,6 +243,11 @@ example 3: [issues (ggplot2)](https://github.com/tidyverse/ggplot2/issues)
 
 
 ## Installing R packages from Github
+
+```{r, eval=F}
+install.packages("remotes")
+```
+
 ```{r, eval=F,echo=T}
 remotes::install_github("ellieallien/cleaninginspectoR",
                         build_opts = c()
@@ -267,7 +289,7 @@ find_outliers(some_data)
 
 ## Getting Started with IMPACT R tools
 
-1. Got to https://rpubs.com/impact_dataunit/impactpackages
+1. Go to https://rpubs.com/impact_dataunit/impactpackages
 2. Follow instructions
 
 ## Questions?
@@ -278,7 +300,17 @@ find_outliers(some_data)
 
 # SESSION 1.2. HANDS ON!
 
-### (slide) Steps:
+## Panic!
+
+- Trial and Error is the name of the game
+- errors are a conversation!
+- if you see an error..
+    - check your spelling
+    - _read_ the message! Any useful tips?
+    - google
+    - ask for help
+
+## Steps:
 
 - _The Data Cleaning Checks Tool_
   	- find the package on the repository list: https://rpubs.com/impact_dataunit/impactpackages
@@ -295,37 +327,160 @@ solution: `read.csv("mydata.csv") %>% data_cleaning_checks %>% write.csv`
 
 - file a feature request on the github issues page 
 
-### SESSION 1.1 CLOSE:
 
-- Q&A
-- _FEEDBACK_
+# Day 1 feedback summary
+
+## Strategy
+
+Tools need to..
+
+- be documented extensively
+- be generalisable
+- have mentorship (ideas?)
+- be self-contained
+- be clear on requirements for inputs (added for today)
+- well written code
+- accessible for debugging
+
+## Packages
+
+- include example input in the package (added for today)
+- easier installation for people with fresh R
+
+## Field led
+
+Field teams to lead on
+
+- what tools should be built
+- what the interface should be like
+- (etc!) <- ?
+
+**best way?**
+
+## Training
+
+- Real life examples is good
+- More informal exchange
+- How to structure an analysis project? (added for today)
+- Hackathon / Brainstorming session (added for today)
+- build something together (tiny version added for tomorrow)
+
+**adding: brainstorming session!**
+
+    - outcomes: list of problems + solution proposals/ideas + priorities
+    - no big time comittments, but clear plan forward
+
+**adding: session on structuring self-contained projects**
 
 
-## SESSION 1.2 (something fun)
 
-# DAY 2
+# The Quantitative Data Analysis Guidelines
 
-## SESSION 2.1.1 Analysis Guidelines review
+## what they are NOT: How to perform an analysis
 
-## SESSION 2.1.2 hypegrammaR (theory)
+## what they ARE (hopefully):
 
-## ~COFFEE BREAK~
+- Approaching data analysis to get meaningful results in context of the research questions/design
+- _Which_ statistical procedures you need (.. but not how to perform them) 
+- How to interpret the results
+- Implications for reporting
 
-## SESSION 2.2.1 hypegrammaR practice: installation & setup
+## Distinguishing exploratory vs. validatory analysis
 
-## SESSION 2.2.2 hypegrammaR practice: try out hypegrammaR on a real data set
+- *Exploratory*: Generating hypothesis
+- *Validatory*: Refuting hypothesis
+
+
+## "Torture your data and it will confess to anything"
+
+Mitigation strategies 1/2:
+
+- (predefined hypothesis)
+- Transparency
+- Generate, then **try to refute** with different data (confirmation bias!)
+- _Think hard about what you are going to look at_
+
+## "Torture your data and it will confess to anything"
+
+Mitigation strategies 2/2: Adjusting the critical P-Value
+- Bonferroni correction (p_critical_eff = p_critical * num_tests)
+- False Discovery Rate
+- **problem with this???*
+      
+
+## Stats 101
+
+- [There is only one test](http://allendowney.blogspot.com/2011/05/there-is-only-one-test.html)
+    - *compute a test statistic* -> effect size
+    - *Identify Null hypothesis*: The observed effect size is due to chance
+    - *Do a million times*: "Fake" samples from a distribution that matches the null hypothesis
+    - *What percentage of those shows an effect size equal or stronger to what we observed?* -> that's a p-value 
+    - *Finally: don't do that, use an analytical approximation instead*
+
+## Guidlines: Analysis Cases
+
+    
+## Guidlines Structure: What do you want to know?
+- Population of interest
+- Sampling strategy
+- Hypothesis
+- Dependent and independent variables
+- Data Types
+- Hypothesis type
+    
+=> "Analysis Case" => Appropriate statistics, visualisations, hypothesis tests
+
+
+## ![analysis flow guidelines](./include/hypegrammaR_flowchart.jpg)
+
+
+## Interpretation
+
+  - Coherent results: low confidence
+  - Coherent results: high confidence
+  - Conflicting results: low confidence
+  - Conflicting results: high confidence
+
+.. Good data = more accurate results but more importantly
+.. Good data = results you *TRUST*
+
+
+# The hypegrammaR Package
+
+## Goal
+
+_Enable people to think more about why they do the analysis and what exactly they want to find out and report on, instead of having to know about or work on how to choose and apply the appropriate summary statistics, hypothesis tests and visualisations._
+
+
+## How?
+
+_If each combination of data types, hypothesis types and sampling strategy can be associated uniquely with an appropriate summary statistic, hypothesis test and visualisation we can..._
+
+## ![analysis flow guidelines](./include/hypegrammaR_flowchart.jpg)
+
+## ![analysis flow hypegrammaR](./include/hypegrammaR_flowchart2.jpg)
+
+
+# Structuring a project
+
+## Environments & Namespaces
+
+## RMarkdown
+
+# Let's go
+
+
+# LUNCH
+
+
+# 
 
 
 # DAY 3
 ## SESSION 3.1.1: grand finale
-- Q&A
-- THE TEST DADADADADA
 - chamapgne
 
 ## SESSION 3.2.2: BONUS SESSION
 - tidyverse?
 - rmarkdown: the gold standard of reproducible data science
 - custom functions / building tools for yourself
-
-
-

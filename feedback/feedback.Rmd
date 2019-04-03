@@ -1,0 +1,218 @@
+---
+title: "training feedback summary"
+author: "Martin Barner"
+date: "15 February 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE,warning=FALSE,message=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library("dplyr")
+library("lubridate")
+library("tidyr")
+library("ggplot2")
+library("gganimate")
+library("ggthemes")
+library("knitr")
+library("gganimate")
+
+```
+
+
+```{r}
+fb<-read.csv("./rcm Training Feedback  - responses.csv")
+day1<-dmy_hms(fb$Zeitstempel) < ymd("2019-02-12")
+day2<-!day1 & dmy_hms(fb$Zeitstempel) < ymd("2019-02-13")
+day3<-!day1 & !day2
+
+day=ifelse(day1,"day 1",ifelse(day2,"day 2","final"))
+
+scores<-data.frame(`not too easy` = 5 - fb$Rate..from.0...not.at.all..to.10...completely....This.part.of.the.training.was.....Too.easy.,
+                   `not too hard` = 5 - fb$Rate..from.0...not.at.all..to.10...completely....This.part.of.the.training.was.....Too.hard.,
+                   `not too detailed` = 5 - fb$Rate..from.0...not.at.all..to.10...completely....This.part.of.the.training.was.....Too.detailed.,
+                   `interesting`= fb$Rate..from.0...not.at.all..to.10...completely....This.part.of.the.training.was.....Interesting.,
+                   `not frustrating` = 5-fb$Rate..from.0...not.at.all..to.10...completely....This.part.of.the.training.was.....frustating.,
+                   stringsAsFactors = F,check.names = F,day,day1,day2,day3)
+
+
+scores<-gather(scores,key = "metric",value="score",`not too easy`,`not too hard`,`not too detailed`,`interesting`,`not frustrating`)
+
+
+```
+
+
+
+
+# Ratings
+
+
+
+## Overall Score
+
+The Final average final rating across all metrics was **`r round(mean(scores$score[day=="final"]),2)` / 5**.
+
+### Final score by metric
+
+```{r}
+mean_score_by_metric<-scores %>% group_by(metric) %>% summarise(`average score`=mean(score))
+ggplot(mean_score_by_metric,aes(x=metric,y=`average score`))+
+  geom_bar(stat = "identity")+
+  scale_y_continuous(limits = c(0,5),breaks = c(0,2.5,5),labels = c("worst (0)","neutral","best (5)"))+
+  theme_minimal()
+
+```
+
+**Conclusion:**
+**Overall score not bad yay! Will continue to manage expectations carefully. Need to look into worst scores, distribution and time ->**
+
+### All-time worst score by metric
+
+The worst score given for any of the metrics on any part of the training
+
+```{r}
+mean_score_by_metric<-scores %>% group_by(metric) %>% summarise(`all-time worst score`=min(score))
+ggplot(mean_score_by_metric,aes(x=metric,y=`all-time worst score`))+
+  geom_bar(stat = "identity")+
+  scale_y_continuous(limits = c(0,5),breaks = c(0,2.5,5),labels = c("worst (0)","neutral","best (5)"))+
+  theme_minimal()
+
+```
+
+
+
+
+##  Score for all 5 metrics over time
+
+```{r, fig.width=10}
+scores %>% group_by(metric,day) %>% summarise(score = mean(score)) %>% ggplot(aes(x = day,y=score,group=metric,colour=metric))+theme_minimal()+geom_path(stat = "identity")+scale_y_continuous(limits = c(0,5),breaks = c(0,2.5,5),labels = c("worst (0)","neutral","best (5)"))
+```
+
+## Score Distribution
+```{r, fig.width=10}
+
+ggplot(scores,aes(x=metric,y=score))+
+  geom_boxplot(outlier.colour = "red",fill="grey")+
+  theme_minimal()+transition_states(day,transition_length = 0.1,state_length = 1)+ labs(title = '{closest_state}')
+
+
+
+
+
+```
+
+
+
+**Conclusion: Both too easy and too hard; difficulty scores are also the most spread out. Will focus on managing varying skill levels: Will add more time for preliminary reading to get everyone to the same base; will add 'bonus' tasks; will push for multi-level training conducted in parallel (as originally planned). Overall intersting, so will keep the general topics covered.**
+
+**Having 'Too Hard' outliers should have been anticipated. Need to identify them early on and provide extra support. 'Mentoring' plan to make sure everyone gets up to speed (Maybe assign mentors based on self-assessed skill levels). **
+
+
+
+
+
+## Individual feedback and ideas Summary & Actions
+
+### Training structure
+
+- more structured 
+- nice that feedback was implemented almost instantly
+
+**Action: Will update the slides for more coherent structure.To keep the instant feedback implementation but have better structure, I will add "blank" timeslots throughout the training. That way we can stick to the structure and still add in the feedback. Any 'digressing' topics I will note down and cover in those timeslots rather than jumping around within a session.**
+
+- wide range of prior knowledge means training is too difficult and too hard at the same time
+
+**Action: To accomodate for varying skill levels, will add 'bonus' tasks for more advanced users to all practical exercises. Will send out prerequisite reading earlier & push for reading time berforehand to make sure skill levels are harmonised**
+
+
+### Exercises
+
+- good mix of theory and practice; should have been less separated
+- tiny bitesized practical example for each item
+- I liked the practical exercises particularly
+- more practical exercises
+- have a specific output as a desired result of a multiple-step process involving multiple tools and eventually leading to a brief analysis of a few hypotheses or indicators
+- have a few small tasks for people to try out with their own data
+- with a few lines of code everyone could do on their own)
+
+**Action: The next training will be organised around a real-world example project around which all exercises are built. Will try out having theory and training sessions in mini-intervals, so that each piece of theory can be tried out immediately (slowly building up the example project analysis)**
+
+
+### Follow up from training
+
+- how to transfer the knowledge we aquire here into our missions?
+- At global workshop, much was discussed but not followed up on
+
+**Actions: As I am transferring the training also to Eliora, we will make all materials available, and put together a "trainer tool" on how to run the training.**
+**To the training plan, I will add a 'follow up' plan on how the shared ideas will be executed / implemented together with the participants.**
+**Will convert the skype group into an R-User group, to continue the discussion**
+**Have regular "micro events"; for example regular "show & tell" call of what people have been working on** 
+
+
+### More resources
+
+- Recommendations for books / tutorials
+- as an organization, we compiled useful training materials, tutorials, packages, etc. 
+- upload the new version of your presentation
+
+**I'm making a single page linking _all_ data unit resources. Adding the above to that list.**
+
+### Requested Topics
+
+- Overview over existing tools
+
+**will add**
+
+- non-statistical sampling and how to correctly report findings
+
+**this is a big topic, it probably needs to be a separate training track. It is not the priority because this is more manageable with 'oldschool' tools.**
+
+### Brainstorming / Sharing
+
+- amazing opportunity to meet people from the other missions, learn from them, enrich own perspective
+- Would be interesting to have a bit of a group discussion on what people are doing in terms of development/automation/programming
+
+**Brainstorming / Sharing etc.: I will add this under the umbrella term 'support community growth' as a declared goal of the trainings and other data unit activities; exact changes not clear yet, but of course more time and more structure for brainstorming, discussion etc. during trainings.**
+
+# Individual Ideas and Feedback
+
+Listed below is the individual full text feedback sorted by agenda item it relates to. Please note that for the responses below, it was asked _specifically_ for negative feedback, and to be as critical (but constructive) as possible.
+
+
+
+## Complete Individual Ideas and Feedback sorted by Agenda Item
+
+```{r,results='asis'}
+
+
+fb_by_day<-fb[,"My.feedback.question..s.."] %>% gsub("^","> ",.) %>% gsub("\n","\n > ",.)
+
+fb_by_day<-fb_by_day %>% split(fb$My.feedback.question.relates.to...)
+
+for(i in 1:length(fb_by_day)){
+  cat(paste("\n\n###",names(fb_by_day)[[i]],"\n\n"))
+  cat(paste(paste(fb_by_day[[i]]),sep="\n\n",collapse="\n\n"))
+}
+
+```
+
+
+# Annex
+
+## "Methodology"
+
+Each day, [this fully anonymous feedback form](https://docs.google.com/forms/d/19b6PdqSJZSmkfyQEg3oRr2BJQkBRDtOrW3oQv63kh1Y/edit) was filled out by the training participants ad-hoc between sessions, as well as after the workshop was finished. Feedback was then implemented in the subsequent sessions, which is why some of the feedback may be "contradictory" between sessions (i.e.: "X is missing from the training", and later "it was good that we did X".
+
+At the end of the last day, the form was filled out by all participants. All ratings are based on `r nrow(fb)` responses overall. 
+
+
+## Raw Data
+
+
+```{r,results='asis'}
+fb %>% lapply(gsub,pattern = "\n",replacement = " --- ") %>% as.data.frame %>% kable
+
+```
+
+
+
+

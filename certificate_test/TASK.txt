@@ -1,0 +1,6 @@
+You have two datasets from the same assessment, but the kobo tool was changed slightly between the two.
+Use the "merge_kobo_data" function from the IMPACT R package "mergekobodata" to combine them into as single data set.
+send the result to martin.barner@impact-initiatives.org
+
+
+Tip: A good search pattern to find csv files could be ".csv" !

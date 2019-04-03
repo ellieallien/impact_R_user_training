@@ -1,0 +1,49 @@
+rcm<-researchcyclematrix::rcm_download()
+
+
+
+rcm[grep("SSD1701a_aok",rcm$file.id,ignore.case = T),c("file.id",'type')] 
+
+
+x<-"SSD"
+rcm_find<-function(x,rcm){
+rcm_found<-apply(rcm,1,function(y){any(grepl(x,y))}) %>% which 
+found_vals<-rcm[rcm_found,c('rcid','file.id','status')]
+kable(found_vals) %>% print
+ret<-rcm[rcm_found,]
+}
+
+rcm_find("cam",rcm)
+
+(rcm$status=="?") %>% which
+rcm[143,]
+
+rcm_set_to_validated("Price Monitoring october Data + Analysis")
+
+
+
+
+# CHECK::: AFG MSNA check if any of the (not validated) analysis was used
+# check duplicated? 
+# IRQ1704b_PDM_KRI_batch1*
+# IRQ1704b_PDM_KRI_batch2*
+# IRQ1704b_PDM_KRI_batch3*
+
+# validated: Price Monitoring october Data + Analysis
+# add lines:: CFSVA Multiple Regression Analysis
+# "LBY1804_MSNA data" -> has analysis??
+# ...1804??? DOUBLE CHECK DATES
+
+rcm<-rcm_download(include_archived = F,include_validated = F)
+check<-rcm_check(rcm)
+
+
+check[check$issue=="data unit item with non-standardisable status","status"]
+check %>% write.csv("inconsistencies.csv")
+rcm[check$status=="planned submission passed but no received date" & check$unit=="reporting",],]
+
+    
+    
+    
+
+
