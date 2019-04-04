@@ -1,7 +1,7 @@
 ---
 title: "IMPACT R user training"
 author: ""
-date: "11-13th February 2019"
+date: "8-11th February 2019"
 output:
   revealjs::revealjs_presentation:
     transition: fade
@@ -14,27 +14,8 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Not a smooth ride
 
-## Questions!
-
-- questions are everything!
-- Might feel hard because there are so MANY easy things at once
-- You are here because you are really talented
-
-## This is a Pilot
-
-- Stuff will go wrong
-- I need your feedback
-- No one in the humanitarian system has (successfully) done this before
-
-# General Strategy {data-background="background.svg"}
-
-## IMPACT strategy:
-
-- More Work 
-
-## Data Unit Strategy: {data-background="background.svg"}
+## IMPACT 2.0. Strategy: {data-background="background.svg"}
 
 - More work => Deeper Analysis
 - More work => Fewer Errors
@@ -56,53 +37,123 @@ knitr::opts_chunk$set(echo = FALSE)
 ## ![cbs](./include/capacity_building_scheme4.jpg) {data-background="background.svg"}
 ## ![cbs](./include/capacity_building_scheme5.jpg) {data-background="background.svg"}
 
+## After last training {data-background="background.svg"}
+![cbs](./include/oliver_wow.JPG)
+
 # Learning Goals {data-background="background.svg"}
 
 ## NOT the learning Goals {data-background="background.svg"}
 
 - *Not* a training on specific tools
-- *Not* a data science degree in 2 days
+- *Not* a data science degree in 2.5 days
     - (not statistics)
     - (not generic R)
     - (not quantitative research methods)
 
-
-## NOT NOT the learning Goals {data-background="background.svg"}
-
+## Learning Goals {data-background="background.svg"}
+&nbsp;
+&nbsp;
 _"Not a training on specific tools"_
 
-- *Instead*: how to access and use all current and future (R) tools developed in IMPACT
-- (..with specific tools as concrete examples)
+<span style="color:green"> 
+*Instead*: how to access and use all current and future (R) tools developed in IMPACT </span>  
+(with specific tools as concrete examples) 
+
+&nbsp;
+&nbsp;
+
+_"Not a data science degree in 2.5 days"_
+
+<span style="color:green"> 
+*Instead*: the first step on your way to becoming a data scientist </span>  
+Focused on collaboration, reproducibility, documentation...  
 
 ## Examples {data-background="background.svg"}
 
 - simple data cleaning checks
-- Basic analysis of random samples (in line with Guidelines)
+- merge kobo data from slightly different tools 
+- merge loops into datasets
+- calculate and apply weights
+- basic analysis of random samples (in line with Guidelines)
 
-# Agenda {data-background="background.svg"}
+## Agenda {data-background="background.svg"}
 
 ## day 1 {data-background="background.svg"}
 
-- 09:00 - 10:30 Prerequisite test / Introduction / Overview
-- 11:00 - 13:00 Sharing Tools in R / at Impact
-- 14:00 - 16:00 Practical Session 1A
-- 16:30 - 18:00 Practical Session 1B
+- 17:00 - 19:00 Introduction / Overview of R packages 
 
 ## day 2 {data-background="background.svg"}
 
-- 09:00 - 10:30 Analysis Guidelines: With great power great responsibility
-- 11:00 - 13:00 The "hypegrammaR" package: R implementation of the guidelines
-- 14:00 - 14:30 **R Environments and structuring self contained projects**
-- 14:30 - 16:00 Practical Session 2
-- 16:30 - 18:00 **Brainstorm**
+- 09:00 - 10:30 Sharing R tools at IMPACT / Project workflow - *koboquest* 
+- 11:00 - 13:00 Preparing data *koboloops*
+- 14:00 - 14:30 **Working together: Oliver's Quicksheets**
+- 14:30 - 16:30  Practical II: *cleaninginspectoR*
+- 17:00 - 19:00  Survey data and looking for help: *surveyweights*
 
 ## day 3 {data-background="background.svg"}
 
-- 09:00 - 10:30 **Certification Test: Work on solutions**
-- 11:00 - 13:00 Bonus session: Going beyond
+- 09:00 - 12:30 Practical III: Hypothesis tests *HypegrammaR*
+- 12:30 - 13:00 **Certification Test: Work on solutions**
 
-## Feedback / Questions? {data-background="background.svg"}
+## day 4 {data-background="background.svg"}
 
+- 09:00 - 10:30 Bonus session: Other questions
+- 11:00 - 13:00 Bonus session: Brainstorm
+
+## After this training you will 
+&nbsp;
+&nbsp;
+&nbsp;
+* Know how to download, load, and use the core packages at IMPACT 
+* (hopefully) be able to transfer that knowledge to your teams
+* Be a part of the IMPACT certified R user community
+
+# Introduction and motivations
+
+## Questions!
+
+- Questions are everything!
+- Might feel hard because there are so MANY easy things at once.
+- You are here because you are really talented
+
+## This is a second Pilot
+
+- Stuff will go wrong
+- I need your feedback
+- No one in the humanitarian system has (successfully) done this before
+
+
+## Agenda {data-background="background.svg"}
+
+## day 1 {data-background="background.svg"}
+
+- 17:00 - 19:00 Introduction / Overview of R packages 
+
+## day 2 {data-background="background.svg"}
+
+- 09:00 - 10:30 Sharing R tools at IMPACT / Project workflow - *koboquest* 
+- 11:00 - 13:00 Preparing data *koboloops*
+- 14:00 - 14:30 **Working together: Oliver's Quicksheets**
+- 14:30 - 16:30  Practical II: *cleaninginspectoR*
+- 17:00 - 19:00  Survey data and looking for help: *surveyweights*
+
+## day 3 {data-background="background.svg"}
+
+- 09:00 - 12:30 Hypothesis tests *HypegrammaR*
+- 12:30 - 13:00 **Certification Test: Work on solutions**
+
+## day 4 {data-background="background.svg"}
+
+- 09:00 - 10:30 Bonus session: Other questions
+- 11:00 - 13:00 Bonus session: Brainstorm
+
+# Mechanics
+
+- The "I dont know how to" board
+- Cheatsheets
+- Questions: always, no hand raising
+
+## Feedback / questions ? 
 
 # 1.1.3 why R is Powerful
 
@@ -118,11 +169,11 @@ sum
 ## *a function*: A few lines of code turned into a new command
 
 ```{r,include=F}
-some_data<-data.frame(some_variable=rnorm(100),another_variable=rnorm(100)+1.5)
+some_data<-data.frame(some_variable=rnorm(100),another_variable=rnorm(100)+1.5, uuid=sample(letters, 100, rep=T))
 ```
 
 ```{r,echo=TRUE}
-colSums(some_data)
+colSums(some_data[,c(1:2)])
 ```
 
 The code behind:
@@ -139,9 +190,19 @@ library(keras)
 application_resnet50
 ```
 
+## *Exercise* write a function
+
+A function that takes a numer, adds two and prints the result
+
+## *Exercise* write a function
+
+A function that takes a numer, adds two and prints the result
+
+Things to consider: 
+- Naming your function
+- Returning something 
 
 ## A package
-
 
 a collection of functions that solve a specific problem
 
@@ -153,7 +214,7 @@ a collection of functions that solve a specific problem
 - Shared through a standardised channel
 
 ## the Result
-![number of R packages](../useR/external/number_of_R_packages.svg)
+![number of R packages](./include/packages_on_cran.png)
 [source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
 
 
@@ -208,7 +269,35 @@ upset
 
 full source code: google _"PACKAGENAME site:www.github.com"_
 
+## Exercise - Brainstorm
+
+What kind of issues could be solved with a package ? 
+
+## Example
+
+![solution to a small, everyday problem](./include/hedi_solutions.JPG)
+
+# day 2 {data-background="background.svg"}
+
+- 09:00 - 10:30 Sharing R tools at IMPACT / Project workflow - **koboloops**
+- 11:00 - 13:00 Checking data cleaning: **cleaninginspectoR**
+- 14:00 - 14:30 **Working together: Oliver's Quicksheets**
+- 14:30 - 16:30  Practical III: **koboquest** 
+- 17:00 - 19:00  Survey data and looking for help: **surveyweights**
+
+## Day 1 recap & feedback 
+
+TO BE FILLED
+
 # R Packages on Github
+
+## Project example
+
+<span style="color:green"> Merge loops </span>  
+Check data cleaning 
+Import data, questionnaire, choices from kobo 
+Calculate weights
+Calculate results
 
 ## Gitwhat?
 
@@ -245,11 +334,11 @@ example 3: [issues (ggplot2)](https://github.com/tidyverse/ggplot2/issues)
 ## Installing R packages from Github
 
 ```{r, eval=F}
-install.packages("remotes")
+install.packages("devtools")
 ```
 
 ```{r, eval=F,echo=T}
-remotes::install_github("ellieallien/cleaninginspectoR",
+devtools::install_github("sharonorengo/koboloops",
                         build_opts = c()
                         )
 ```
@@ -259,31 +348,31 @@ remotes::install_github("ellieallien/cleaninginspectoR",
 
 ## Load 
 ```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
-library("cleaninginspectoR")
+library("koboloops")
 ```
 
 ### Learn
 
 Overview:
 ```{r,eval=F,echo=T}
-?cleaninginspectoR
+?koboloops
 ```
 Manuals / Help Documents
 ```{r,eval=F,echo=T}
-browseVignettes("cleaninginspectoR")
+browseVignettes("koboloops")
 ```
 List all functions
 ```{r,echo=T,eval=F}
-ls("package:cleaninginspectoR")
+ls("package:koboloops")
 ```
 Type `Packagename::` and hit `tab` to see available functions
 
 ```{r,echo=F}
-knitr::kable(data.frame("contents"=ls("package:cleaninginspectoR")),format="html")
+knitr::kable(data.frame("contents"=ls("package:koboloops")),format="html")
 ```
 Use!
 ```{r, echo=T}
-find_outliers(some_data)
+find_outliers(some_data, "uuid")
 ```
 
 
@@ -292,13 +381,15 @@ find_outliers(some_data)
 1. Go to https://rpubs.com/impact_dataunit/impactpackages
 2. Follow instructions
 
-## Questions?
+## Project plans 
 
-... and feedback?
+<span style="color:green"> Merge loops </span>  
+Check data cleaning 
+Import data, questionnaire, choices from kobo 
+Calculate weights
+Calculate results
 
-# ~ COFFEE / TEE / NAPS ~
-
-# SESSION 1.2. HANDS ON!
+# ~ LUNCH ~
 
 ## Panic!
 
@@ -310,7 +401,7 @@ find_outliers(some_data)
     - google
     - ask for help
 
-## Steps:
+## PRACTICAL II
 
 - _The Data Cleaning Checks Tool_
   	- find the package on the repository list: https://rpubs.com/impact_dataunit/impactpackages
@@ -321,26 +412,20 @@ find_outliers(some_data)
   	- run the data cleaning checks on your data
   	- save the results to a csv file.
 
-solution: `read.csv("mydata.csv") %>% data_cleaning_checks %>% write.csv`
+## Solution:
+`read.csv("mydata.csv") %>% data_cleaning_checks %>% write.csv`
 
-### Bonus
+##Bonus
 
 - file a feature request on the github issues page 
+- create a function for an additional test 
 
 
-# Day 1 feedback summary
+# Day 2 morning feedback
 
 ## Strategy
 
-Tools need to..
-
-- be documented extensively
-- be generalisable
-- have mentorship (ideas?)
-- be self-contained
-- be clear on requirements for inputs (added for today)
-- well written code
-- accessible for debugging
+TO BE FILLED
 
 ## Packages
 
@@ -349,11 +434,7 @@ Tools need to..
 
 ## Field led
 
-Field teams to lead on
-
-- what tools should be built
-- what the interface should be like
-- (etc!) <- ?
+TO BE FILLED
 
 **best way?**
 
@@ -364,14 +445,6 @@ Field teams to lead on
 - How to structure an analysis project? (added for today)
 - Hackathon / Brainstorming session (added for today)
 - build something together (tiny version added for tomorrow)
-
-**adding: brainstorming session!**
-
-    - outcomes: list of problems + solution proposals/ideas + priorities
-    - no big time comittments, but clear plan forward
-
-**adding: session on structuring self-contained projects**
-
 
 
 # The Quantitative Data Analysis Guidelines
