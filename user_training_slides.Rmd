@@ -22,8 +22,8 @@ knitr::opts_knit$set(root.dir = 'c:/Users/Eliora Henzler/Documents/GitHub/impact
 &nbsp;  
 &nbsp; 
 - Standardising products and processes  
-- Increasing collaboration  
-- Growing quality of our products
+- Being everywhere  
+- Mainstreaming technological tools  
 
 ## IMPACT 2.0. Strategy: Data Unit edition {data-background="background.svg"}
 &nbsp;  
@@ -31,8 +31,9 @@ knitr::opts_knit$set(root.dir = 'c:/Users/Eliora Henzler/Documents/GitHub/impact
 &nbsp;  
 &nbsp; 
 - Standardising products and processes  
-- Increasing collaboration  
-- Growing quality of our products
+- Being everywhere  
+- Mainstreaming technological tools  
+
 
 **using R and other software to do this**
 
@@ -71,9 +72,9 @@ knitr::opts_knit$set(root.dir = 'c:/Users/Eliora Henzler/Documents/GitHub/impact
 # Learning Goals {data-background="background.svg"}
 
 ## NOT the learning Goals {data-background="background.svg"}
-&nbsp;
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
 - *Not* a training on specific tools  
 - *Not* a data science degree in 2.5 days  
     - (not statistics)  
@@ -81,8 +82,8 @@ knitr::opts_knit$set(root.dir = 'c:/Users/Eliora Henzler/Documents/GitHub/impact
     - (not quantitative research methods)  
 
 ## Learning Goals {data-background="background.svg"}
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
 _"Not a training on specific tools"_
 
 <span style="color:green"> 
@@ -116,23 +117,20 @@ Focused on collaboration, reproducibility, documentation...
 **Day 4**   
 * Brainstorm and Hackathon 
 
-## Examples {data-background="background.svg"}
-&nbsp;  
-- simple data cleaning checks  
-- merge kobo data from slightly different tools  
-- merge loops into datasets  
-- calculate and apply weights  
-- analysis of random samples (in line with Guidelines)  
-- producing barcharts with error bars  
-- visualise intersecting sets  
 
 ## After this training you will {data-background="background.svg"}
-&nbsp;  
-&nbsp;  
-&nbsp;  
+
 * Know how to **download, load, and use** the core packages at IMPACT  
 * (hopefully) be able to transfer that knowledge to your teams  
 * Be a part of the IMPACT certified R user community  
+&nbsp;  
+*R sepcific:  
+  - Load packages  
+  - Load and save data from R  
+  - Access and use documentation  
+  - Functions  
+  - Basic debugging
+  - Collaborate on GitHub  
 
 # Introduction and motivations {data-background="background.svg"}
 
