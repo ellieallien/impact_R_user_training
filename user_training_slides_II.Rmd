@@ -1,0 +1,823 @@
+---
+title: "IMPACT R user training"
+author: ""
+date: "22nd May 2019"
+output:
+  revealjs::revealjs_presentation:
+    transition: fade
+    css: style.css
+    toc: true
+---
+
+```{r setup, include=FALSE}
+# ioslides_presentation slidy_presentation
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## IMPACT 2.0. Strategy: {data-background="background.svg"}
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+- Standardising products and processes  
+- Being everywhere  
+- Mainstreaming technological tools  
+
+## IMPACT 2.0. Strategy: Data Unit edition {data-background="background.svg"}
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+- Standardising products and processes  
+- Being everywhere  
+- Mainstreaming technological tools  
+
+
+**using R and other software to do this**
+
+## ![cbs](./include/working_together.jpg) {data-background="background.svg"}
+
+## For this to happen{data-background="background.svg"}
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+- **Capacity**  
+- Processes  
+- Sustainable Change  
+
+# Data Unit capacity building framework {data-background="background.svg"}
+
+## ![cbs](./include/capacity_building_scheme.jpg)  {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme2.jpg) {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme3.jpg) {data-background="background.svg"}
+
+## After last training {data-background="background.svg"}
+&nbsp;
+&nbsp;
+![cbs](./include/oliver_wow.JPG)
+
+## After last training {data-background="background.svg"}
+&nbsp;
+&nbsp;
+![cbs](./include/hedi_solutions.JPG)
+
+# Dynamic capacity building framework {data-background="background.svg"}
+
+## ![cbs](./include/capacity_building_scheme4.jpg) {data-background="background.svg"}
+## ![cbs](./include/capacity_building_scheme5.jpg) {data-background="background.svg"}
+
+# Learning Goals {data-background="background.svg"}
+
+## NOT the learning Goals {data-background="background.svg"}
+&nbsp;  
+&nbsp;  
+&nbsp;  
+- *Not* a training on specific tools  
+- *Not* a data science degree in 2.5 days  
+    - (not statistics)  
+    - (not generic R)  
+    - (not quantitative research methods)  
+
+## Learning Goals {data-background="background.svg"}
+&nbsp;  
+&nbsp;  
+_"Not a training on specific tools"_
+
+<span style="color:green"> 
+*Instead*: how to access and use all current and future (R) tools developed in IMPACT </span>  
+(with specific tools as concrete examples) 
+
+&nbsp;
+&nbsp;
+
+_"Not a data science degree in 2.5 days"_
+
+<span style="color:green"> 
+*Instead*: the first step on your way to becoming a data scientist </span>  
+Focused on collaboration, reproducibility, documentation...  
+
+
+## Agenda {data-background="background.svg"}
+
+**Day1**   
+* Intro to R and overview of packages  
+* Practical: Using 'cleaninginspectoR' to check data has been cleaned 
+&nbsp;  
+**Day2**   
+* Testing inputs to the tool 
+* Practical: Using 'kobostandards' to check all inputs are in place to execute the analysis plan
+
+## After the full training you will {data-background="background.svg"}
+
+* Know how to **download, load, and use** the core packages at IMPACT  
+* (hopefully) be able to transfer that knowledge to your teams  
+* Be a part of the IMPACT certified R user community  
+&nbsp;  
+*R sepcific:  
+  - Load packages  
+  - Load and save data from R  
+  - Access and use documentation  
+  - Basic debugging  
+
+# Introduction and motivations {data-background="background.svg"}
+
+## Questions! {data-background="background.svg"}
+&nbsp; 
+&nbsp;  
+&nbsp; 
+- Questions are everything!
+
+## Agenda {data-background="background.svg"}
+&nbsp; 
+&nbsp;  
+&nbsp; 
+*day 1*  
+- 13:30 - 15:00 Introduction / Overview of R packages  
+- 15:15 - 16:00 Using an R package *cleaninginspectoR*  
+
+## Feedback / questions ? 
+
+# 1.1.3 why R is Powerful
+
+## *a primitive function*: R commands
+```{r,echo=T}
+sum(1,1)
+```
+
+```{r,echo=T}
+sum
+```
+
+## *a function*: A few lines of code turned into a new command
+
+```{r,include=F}
+some_data<-data.frame(some_variable=rnorm(100),another_variable=rnorm(100)+1.5, uuid=sample(letters, 100, rep=T))
+```
+
+```{r,echo=TRUE}
+colSums(some_data[,c(1:2)])
+```
+
+The code behind:
+```{r,echo=T}
+colSums
+```
+
+**THIS CHANGES EVERYTHING!!! WHY?**
+
+## a "complicated" function
+
+```{r, echo=T}
+library(keras)
+application_resnet50
+```
+
+## *Exercise* write a function
+&nbsp;  
+&nbsp; 
+A function that takes a numer, adds two and prints the result
+
+## *Exercise* write a function
+&nbsp;  
+&nbsp; 
+A function that takes a numer, adds two and prints the result
+
+Things to consider:   
+- Arguments   
+- Naming your function  
+- Returning something   
+
+## A package
+
+a collection of functions that solve a specific problem
+
+- Standardised
+- Reliable
+- Documented
+- locked & hidden details
+- "Stackable": can be used in other functions/packages
+- Shared through a standardised channel
+
+## the Result
+![number of R packages](./include/packages_on_cran.png)
+[source](https://www.r-bloggers.com/on-the-growth-of-cran-packages/)
+
+
+## Questions/Feedback?
+
+# Accessing R Packages
+
+```{r,include=FALSE}
+library("UpSetR")
+movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), header=T, sep=";" )
+mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
+```
+
+## Finding Packages
+
+- google _"how to .... in R"_
+- tutorials
+- https://rseek.org/
+- https://awesome-r.com/
+- https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages
+- the classics: tidyverse, sf, lubridate, survey, magrittr, rmarkdown 
+
+- RStudio conference (youtube)
+- Twitter
+
+
+## Install
+```{R,echo=T,eval=F}
+install.packages("UpSetR")
+```
+
+## Load
+```{r,echo=T,eval=F}
+library("UpSetR")
+```
+
+## Learn
+```{r,echo=T,eval=F}
+## About the package
+?UpSetR
+
+## About a function in the package
+?upset
+```
+
+## Use
+```{R,echo=T}
+movies <- read.csv(system.file("extdata", "movies.csv", package = "UpSetR"), header=TRUE, sep=";" )
+
+upset(movies, nsets = 6)
+```
+
+## Behind the curtains
+```{r,echo=T}
+upset
+```
+
+full source code: google _"PACKAGENAME site:www.github.com"_
+
+## Exercise - Brainstorm
+
+What kind of issues could be solved with a package ?
+
+- Package to calculate weights from the sampling frame
+- Package to visualise intersecting sets 
+- Package that maps out the data analysis guidelines
+
+
+
+
+# day 2 {data-background="background.svg"}
+
+## Agenda 
+- 09:00 - 10:30 R tools at IMPACT **cleaninginspectoR**
+- 11:00 - 13:00 Debugging **koboquest** 
+- 14:00 - 14:30 Sharing tools: **Hedi's magic**
+- 14:30 - 15:00 Adding to the list of requested tools
+- 15:30 - 16:30 *koboloops*
+- 17:00 - 19:00 R environments **surveyweights**
+
+## Day 1 recap & feedback 
+
+TO BE FILLED
+
+# R Packages on Github
+
+## Project workflow
+&nbsp;  
+&nbsp; 
+Check data cleaning   
+Import questionnaire and choices from kobo  
+Check inputs for accuracy & consistency  
+Merge loops  
+Calculate weights  
+Calculate results
+
+## Installing R packages from Github
+
+```{r, eval=F}
+install.packages("devtools")
+```
+
+```{r, echo=T, eval = F}
+devtools::install_github("ellieallien/cleaninginspectoR",
+                        build_opts = c()
+                        )
+```
+
+- "USERNAME/REPOSITORYNAME"
+- `build_opts=c()`: makes sure to also download the manual (see `?remotes::install_github`)
+
+## Load 
+
+```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
+library("cleaninginspectoR")
+```
+
+### Learn
+
+Overview:
+```{r,eval=F,echo=T}
+?cleaninginspectoR
+```
+Manuals / Help Documents
+```{r,eval=F,echo=T}
+browseVignettes("cleaninginspectoR")
+```
+List all functions
+```{r,echo=T,eval=F}
+ls("package:cleaninginspectoR")
+```
+Type `Packagename::` and hit `tab` to see available functions
+
+```{r,echo=F}
+knitr::kable(data.frame("contents"=ls("package:cleaninginspectoR")),format="html")
+```
+Use!
+```{r, echo=T}
+
+```
+## Solution:
+```{r, echo=T, eval = F}
+data <- read.csv("./exercise_material/data_clean.csv", stringsAsFactors = F) 
+library(tidyr)
+data %>% inspect_all(., "X_uuid") %>% write.csv(., "issues.csv")
+```
+
+## Bonus
+
+- Create a function for an additional test (enumerator IDs, time spent, ...)
+
+# day 2 {data-background="background.svg"}
+
+## Agenda 
+- 09:20 - 10:00 Day 1 review and feedback
+- 10:00 - 12:30 Debugging **koboquest** 
+- 14:00 - 14:30 Sharing tools: **Hedi's magic**
+- 14:30 - 15:00 Adding to the list of requested tools
+- 15:30 - 16:30 *koboloops*
+- 17:00 - 19:00 R environments **surveyweights**
+
+
+
+# Day 1 evening recap
+
+## Creating functions
+```{r, echo=T, eval = T}
+### Define function
+add_two <- function(x = 7){
+y <- x+2
+return(y)
+}
+
+### Call function
+add_two(x = 10)
+```
+
+## Working with packages
+
+### Install
+```{r, echo=T, eval = F}
+devtools::install_github("ellieallien/cleaninginspectoR",
+                        build_opts = c()
+                        )
+```
+
+### Load 
+```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
+library("cleaninginspectoR")
+```
+
+### Learn
+
+Overview:
+```{r,eval=F,echo=T}
+?cleaninginspectoR
+```
+
+Manuals / Help Documents
+```{r,eval=F,echo=T}
+browseVignettes("cleaninginspectoR")
+```
+
+## List all functions
+```{r,echo=T,eval=T}
+ls("package:cleaninginspectoR")
+```
+
+## Practical exercise 
+
+## Load 
+```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
+data <- read.csv("./exercise_material/data_raw.csv", stringsAsFactors = F)
+```
+
+What's STRINGS AS FACTORS = FALSE? 
+
+## Loading objects general overview:: 
+
+If you load something into your console it disappears after that line of code  
+If you load something into a names object, it stays in your R sessions  
+If you load something back onto your computer (for example with write.csv, then it stays on your computer)  
+
+Remember ?
+```{r,eval=F,echo=T}
+add_two(x = 10)
+x
+```
+
+Versus
+```{r,eval=F,echo=T}
+x <- add_two(x = 10)
+x
+```
+
+
+## Errors
+
+- Trial and Error is the name of the game
+- errors are a conversation!
+- if you see an error..
+    - check your spelling
+    - _read_ the message! Any useful tips?
+    - google
+    - ask for help
+    
+## The "debug" function is your best friend
+
+```{r,eval=F,echo=T}
+debug(find_duplicates)
+undebug(find_duplicates)
+```
+
+## Project plan 
+
+<span style="color:green"> Check data cleaning   </span>  
+<span style="color:blue">**Import questionnaire and choices** to check they are in order   </span>  
+**Merge loops** to calculate water supply for each HH  
+**Calculate weights** on the fly  
+**Calculate results**  
+
+## Getting Started with IMPACT R tools
+
+1. Go to https://rpubs.com/impact_dataunit/impactpackages
+2. Follow instructions
+
+
+## PRACTICAL II
+
+- _The Kobo input Tool_
+  	- find the package on the repository list that lets you check your inputs: https://rpubs.com/impact_dataunit/impactpackages
+  	- install the package (from github, using devtools)  
+  	- look at the Documentation file  
+  	- browse the vignettes; Read the "quickstart" vignette  
+  	- load your data, then load your survey and choices files (one function that you learnt about yesterday does this)
+  	
+
+## PRACTICAL II
+
+- _The Kobo inputs_
+  - Make sure you save them in an object (otherwise they disappear)
+
+
+## Loading objects general overview:: 
+
+If you load something into your console it disappears after that line of code  
+If you load something into a names object, it stays in your R sessions  
+If you load something back onto your computer (for example with write.csv, then it stays on your computer)  
+
+Remember ?
+```{r,eval=F,echo=T}
+# Re-load your function 'add_two' from yesterday
+
+add_two(x = 10)
+x
+```
+
+Versus
+```{r,eval=F,echo=T}
+y <- add_two(x = 10)
+y
+```
+
+
+## Solution:
+```{r, echo=T, eval = F}
+devtools::install_github("mabafaba/kobostandards",
+                        build_opts = c())
+library("kobostandards")
+?kobostandards
+browseVignettes("kobostandards")
+```
+
+## Solution: Loading 
+```{r, echo=T, eval = F}
+data <- read.csv("./exercise_material/data_clean.csv", stringsAsFactors = F)
+
+questions <- read.csv( "./exercise_material/questions.csv")
+choices <- read.csv("./exercise_material/choices.csv")
+
+analysis_plan <- read.csv("./exercise_material/data_analysis_plan.csv")
+sampling_fram <- read.csv("./exercise_material/sampling_fr.csv")
+
+```
+
+## Solution: Checking
+```{r, echo=T, eval = F}
+
+check_inputs(data = data, )
+
+```
+
+## What can we do with those ? 
+```{r, echo=T, eval = F}
+percent <- latrine_access_problems %>% apply(., 2, function(x){return(sum(x, na.rm = T)/length(x))})
+
+
+questionnaire$question_is_select_multiple(names(data))
+colSums(latrine_access_problems, na.rm = T)
+
+skipped <- questionnaire$question_is_skipped(data, "refugee.settlement")
+
+
+agojo <- refugee.settlements$refugee.settlement == "agojo"
+sum(agojo) / length(agojo)
+
+refugee.settlements <- data[!skipped,]
+```
+
+##Bonus
+
+find all the select multiple questions in the dataset
+
+calculate summary statistics for those 
+
+# ~ COFFEE, TEA, NAPS ~ 
+
+
+## RECAP 
+
+## Loading objects
+
+Remember ?
+```{r,eval=F,echo=T}
+add_two(x = 10)
+x
+```
+
+Versus
+```{r,eval=F,echo=T}
+x <- add_two(x = 10)
+x
+```
+
+## Debugging
+
+looking your error up on google
+reading the error message 
+
+going through the debug cycle
+```{r,eval=F,echo=T}
+debug(find_duplicates)
+undebug(find_duplicates)
+```
+
+
+## Reading documentation carefully: vignettes 
+
+## Project plan 
+
+<span style="color:green"> Check data cleaning   
+**Import questionnaire and choices** to identify select multiple questions   </span>  
+**Merge loops** to calculate water supply for each HH  
+**Calculate weights** on the fly  
+**Calculate results**  
+
+## The challenge
+
+For our WASH analysis, we have to know for each HH how much water they can access from all their containers combined. 
+But the containers info is in a different sheet ! 
+What to do ??
+
+
+## Adding the loops data to your data: preparation
+
+```{r, echo=T, eval = F}
+devtools::install_github("sharonorengo/koboloops",
+                        build_opts = c())
+library(koboloops)
+browseVignettes("koboloops")
+
+?koboloops::add_parent_to_loop
+?koboloops::affect_loop_to_parent
+```
+
+## Adding the loops data to your data: execution
+```{r, echo=T, eval = F}
+main <- read.csv("./exercise_material/data_raw.csv", stringsAsFactors = F)
+loops <- read.csv("./exercise_material/water_loop.csv", stringsAsFactors = F)
+```
+## Adding the loops data to your data: execution
+```{r, echo=T, eval = F}
+full_data <- koboloops::add_parent_to_loop(loops, main)
+
+full_data_water_info <- koboloops::affect_loop_to_parent(loops, main, aggregate.function = sum,"litres")
+
+full_data_water_info$average_water <- full_data_water_info$Aggregation_Result_litres / full_data_water_info$calc.household
+
+```
+
+## Bonus:
+
+Instead of the total for the household, calculate the average amount of water per hh member.
+
+## Agenda 
+- 09:20 - 10:00 Day 1 review and feedback  
+  - Assigning results 
+- 10:00 - 12:30 Debugging **koboquest** 
+  - Looking at your errors  
+  - debug(), undebug()  
+- 14:00 - 14:30 Sharing tools
+- 15:30 - 16:30 Documentations **koboloops**
+  - If there is no documentation, check the Vignettes  
+  - If the Vignettes aren't enough, check the functions  
+  - Look at examples  
+  - Dataframes !! 
+- 17:00 - 19:00 R environments **surveyweights**
+
+
+## Project plan
+
+- <span style="color:green"> Check data cleaning   
+- **Import questionnaire and choices** to identify select multiple questions  
+- **Merge loops** to calculate water supply for each HH  </span>
+- **Calculate weights** on the fly
+- **Calculate results**
+
+## Getting the weights ready: download
+
+Exercise: 
+
+
+```{r, echo=T, eval = F}
+devtools::install_github("mabafaba/surveyweights",
+
+                        
+``` 
+
+```{r, echo=T, eval = T}                        build_opts = c())
+library(surveyweights)
+??surveyweights
+```
+
+## Getting the weights ready: use
+```{r, echo=T, eval = T}
+samplingframe <- read.csv("./exercise_material/sampling_fr.csv")
+data <- read.csv("./exercise_material/data_clean.csv")
+```
+
+```{r, echo=T, eval = F}
+myweightings <- weighting_fun_from_samplingframe(sampling.frame = samplingframe,
+                                            data.stratum.column = "strata",
+                                            sampling.frame.population.column = "population",
+                                            sampling.frame.stratum.column = "strata")
+
+weights_full <- myweightings(data)
+```
+
+## Why not just use weights_full and be done ? 
+```{r, echo=T, eval = F}
+data$hoh.sex %>% table
+
+
+  data_fhh <- data %>% filter(hoh.sex == "female")
+
+weights_fhh <- myweightings(data_fhh)
+```
+
+```{r, echo=T, eval = F}
+weights_fhh %>% table
+weights_full %>% table
+```
+
+## Bonus: combine with other weights 
+
+# The Quantitative Data Analysis Guidelines
+
+## what they are NOT: How to perform an analysis
+
+## what they ARE (hopefully):
+
+- Approaching data analysis to get meaningful results in context of the research questions/design
+- _Which_ statistical procedures you need (.. but not how to perform them) 
+- How to interpret the results
+- Implications for reporting
+
+## Distinguishing exploratory vs. validatory analysis
+
+- *Exploratory*: Generating hypothesis
+- *Validatory*: Refuting hypothesis
+
+## "Torture your data and it will confess to anything"
+
+Mitigation strategies 1/2:
+
+- (predefined hypothesis)
+- Transparency
+- Generate, then **try to refute** with different data (confirmation bias!)
+- _Think hard about what you are going to look at_
+
+## "Torture your data and it will confess to anything"
+
+Mitigation strategies 2/2: Adjusting the critical P-Value
+- Bonferroni correction (p_critical_eff = p_critical * num_tests)
+- False Discovery Rate
+- **problem with this???*
+      
+
+## Stats 101
+
+- [There is only one test](http://allendowney.blogspot.com/2011/05/there-is-only-one-test.html)
+    - *compute a test statistic* -> effect size
+    - *Identify Null hypothesis*: The observed effect size is due to chance
+    - *Do a million times*: "Fake" samples from a distribution that matches the null hypothesis
+    - *What percentage of those shows an effect size equal or stronger to what we observed?* -> that's a p-value 
+    - *Finally: don't do that, use an analytical approximation instead*
+
+## Guidlines: Analysis Cases
+
+    
+## Guidlines Structure: What do you want to know?
+- Population of interest
+- Sampling strategy
+- Hypothesis
+- Dependent and independent variables
+- Data Types
+- Hypothesis type
+    
+=> "Analysis Case" => Appropriate statistics, visualisations, hypothesis tests
+
+
+## ![analysis flow guidelines](./include/hypegrammaR_flowchart.jpg)
+
+
+## Interpretation
+
+  - Coherent results: low confidence
+  - Coherent results: high confidence
+  - Conflicting results: low confidence
+  - Conflicting results: high confidence
+
+.. Good data = more accurate results but more importantly
+.. Good data = results you *TRUST*
+
+
+# The hypegrammaR Package
+
+## Project plan
+
+<span style="color:green"> Check data cleaning 
+Import data, questionnaire, choices from kobo 
+Merge loops 
+Calculate weights </span>
+**Calculate results**
+
+## Goal
+
+_Enable people to think more about why they do the analysis and what exactly they want to find out and report on, instead of having to know about or work on how to choose and apply the appropriate summary statistics, hypothesis tests and visualisations._
+
+
+## How?
+
+_If each combination of data types, hypothesis types and sampling strategy can be associated uniquely with an appropriate summary statistic, hypothesis test and visualisation we can..._
+
+## ![analysis flow guidelines](./include/hypegrammaR_flowchart.jpg)
+
+## ![analysis flow hypegrammaR](./include/hypegrammaR_flowchart2.jpg)
+
+
+## Exercise install and load hypegrammaR
+
+
+```{r, echo=T, eval = F}
+devtools::install_github("ellieallien/hypegrammaR", build_opts = c())
+
+library(hypegrammaR)
+
+browseVignettes("hypegrammaR")
+```
+See if there is a difference on problems accessing latrines depending on the gender of the head of household
+
+
+# DAY 4
+## SESSION 3.1.1: grand finale
+- chamapgne
+
+## SESSION 3.2.2: BONUS SESSION
+- rmarkdown: the gold standard of reproducible data science
+- custom functions / building tools for yourself

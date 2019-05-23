@@ -1,7 +1,7 @@
 ---
 title: "IMPACT R user training"
 author: ""
-date: "8th-11th April 2019"
+date: "21st-22nd May 2019"
 output:
   revealjs::revealjs_presentation:
     transition: fade
@@ -12,7 +12,6 @@ output:
 ```{r setup, include=FALSE}
 # ioslides_presentation slidy_presentation
 knitr::opts_chunk$set(echo = FALSE)
-knitr::opts_knit$set(root.dir = 'c:/Users/Eliora Henzler/Documents/GitHub/impact_R_user_training/')
 ```
 
 
@@ -409,15 +408,96 @@ data %>% inspect_all(., "X_uuid") %>% write.csv(., "issues.csv")
 
 - Create a function for an additional test (enumerator IDs, time spent, ...)
 
-# ~ COFFEE / TEE / NAPS ~
+# day 2 {data-background="background.svg"}
+
+## Agenda 
+- 09:20 - 10:00 Day 1 review and feedback
+- 10:00 - 12:30 Debugging **koboquest** 
+- 14:00 - 14:30 Sharing tools: **Hedi's magic**
+- 14:30 - 15:00 Adding to the list of requested tools
+- 15:30 - 16:30 *koboloops*
+- 17:00 - 19:00 R environments **surveyweights**
+
+
+
+# Day 1 evening recap
+
+## Creating functions
+```{r, echo=T, eval = T}
+### Define function
+add_two <- function(x = 7){
+y <- x+2
+return(y)
+}
+
+### Call function
+add_two(x = 10)
+```
+
+## Working with packages
+
+### Install
+```{r, echo=T, eval = F}
+devtools::install_github("ellieallien/cleaninginspectoR",
+                        build_opts = c()
+                        )
+```
+
+### Load 
+```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
+library("cleaninginspectoR")
+```
+
+### Learn
+
+Overview:
+```{r,eval=F,echo=T}
+?cleaninginspectoR
+```
+Manuals / Help Documents
+```{r,eval=F,echo=T}
+browseVignettes("cleaninginspectoR")
+```
+
+## List all functions
+```{r,echo=T,eval=T}
+ls("package:cleaninginspectoR")
+```
+
+## Practical exercise 
+
+## Load 
+```{r, eval=T,echo=T,warning=FALSE,message=FALSE}
+data <- read.csv("./exercise_material/data_raw.csv", stringsAsFactors = F)
+```
+
+What's STRINGS AS FACTORS = FALSE? 
+
+## Loading objects general overview:: 
+
+If you load something into your console it disappears after that line of code  
+If you load something into a names object, it stays in your R sessions  
+If you load something back onto your computer (for example with write.csv, then it stays on your computer)  
+
+Remember ?
+```{r,eval=F,echo=T}
+add_two(x = 10)
+x
+```
+
+Versus
+```{r,eval=F,echo=T}
+x <- add_two(x = 10)
+x
+```
 
 ## Project plan 
 
-<span style="color:green"> Check data cleaning </span>
-**Import questionnaire and choices** to identify select multiple questions
-**Merge loops** to calculate water supply for each HH
-**Calculate weights** on the fly
-**Calculate results**
+<span style="color:green"> Check data cleaning   </span>
+**Import questionnaire and choices** to identify select multiple questions  
+**Merge loops** to calculate water supply for each HH  
+**Calculate weights** on the fly  
+**Calculate results**  
 
 ## Getting Started with IMPACT R tools
 
@@ -436,14 +516,19 @@ data %>% inspect_all(., "X_uuid") %>% write.csv(., "issues.csv")
     
 ## The "debug" function is your best friend
 
+```{r,eval=F,echo=T}
+debug(find_duplicates)
+undebug(find_duplicates)
+```
+
 ## PRACTICAL II
 
 - _The Kobo input Tool_
   	- find the package on the repository list: https://rpubs.com/impact_dataunit/impactpackages
   	- install the package (from github)
-  	- looks at the Documentation file
+  	- look at the Documentation file
   	- browse the vignettes; Read the "quickstart" vignette --> if there is none, raise an issue
-  	- load your data, then load your survey and choices files (one function does this)
+  	- load your data, then load your survey and choices files (one function in the package does this)
   	
 ## PRACTICAL II
 
@@ -462,7 +547,7 @@ data %>% inspect_all(., "X_uuid") %>% write.csv(., "issues.csv")
 
 
 ## Solution:
-```{r, echo=F, eval = F}
+```{r, echo=T, eval = F}
 devtools::install_github("mabafaba/koboquest",
                         build_opts = c())
 library(koboquest)
@@ -478,51 +563,123 @@ latrine_access_problems <- data[,ap]
 ```
 
 
-## What can we do with those ? 
-```{r, echo=F, eval = F}
-latrine_access_problems %>% apply(., 2, function(x){return(sum(x, na.rm = T)/length(x))})
 
+## What can we do with those ? 
+```{r, echo=T, eval = F}
+percent <- latrine_access_problems %>% apply(., 2, function(x){return(sum(x, na.rm = T)/length(x))})
+
+
+questionnaire$question_is_select_multiple(names(data))
+colSums(latrine_access_problems, na.rm = T)
+
+skipped <- questionnaire$question_is_skipped(data, "refugee.settlement")
+
+
+agojo <- refugee.settlements$refugee.settlement == "agojo"
+sum(agojo) / length(agojo)
+
+refugee.settlements <- data[!skipped,]
 ```
 
 ##Bonus
 
 find all the select multiple questions in the dataset
+
 calculate summary statistics for those 
 
-# ~ LUNCH ~ 
+# ~ COFFEE, TEA, NAPS ~ 
 
-## Day 2 morning feedback
 
-TO BE FILLED
+## RECAP 
+
+## Loading objects
+
+Remember ?
+```{r,eval=F,echo=T}
+add_two(x = 10)
+x
+```
+
+Versus
+```{r,eval=F,echo=T}
+x <- add_two(x = 10)
+x
+```
+
+## Debugging
+
+looking your error up on google
+reading the error message 
+
+going through the debug cycle
+```{r,eval=F,echo=T}
+debug(find_duplicates)
+undebug(find_duplicates)
+```
 
 
 ## Reading documentation carefully: vignettes 
 
 ## Project plan 
 
-<span style="color:green"> Check data cleaning 
-**Import questionnaire and choices** to identify select multiple questions </span>
-**Merge loops** to calculate water supply for each HH 
-**Calculate weights** on the fly
-**Calculate results**
+<span style="color:green"> Check data cleaning   
+**Import questionnaire and choices** to identify select multiple questions   </span>  
+**Merge loops** to calculate water supply for each HH  
+**Calculate weights** on the fly  
+**Calculate results**  
 
-## Adding the loops data to your data 
+## The challenge
 
-```{r, echo=F, eval = F}
+For our WASH analysis, we have to know for each HH how much water they can access from all their containers combined. 
+But the containers info is in a different sheet ! 
+What to do ??
+
+
+## Adding the loops data to your data: preparation
+
+```{r, echo=T, eval = F}
 devtools::install_github("sharonorengo/koboloops",
                         build_opts = c())
 library(koboloops)
 browseVignettes("koboloops")
-main <- read.csv("./exercise_material/data_raw.csv")
-loops <- read.csv("./exercise_material/water_loop.csv")
 
+?koboloops::add_parent_to_loop
+?koboloops::affect_loop_to_parent
+```
+
+## Adding the loops data to your data: execution
+```{r, echo=T, eval = F}
+main <- read.csv("./exercise_material/data_raw.csv", stringsAsFactors = F)
+loops <- read.csv("./exercise_material/water_loop.csv", stringsAsFactors = F)
+```
+## Adding the loops data to your data: execution
+```{r, echo=T, eval = F}
 full_data <- koboloops::add_parent_to_loop(loops, main)
-full_data_water_info <- koboloops::affect_loop_to_parent(loops, main, aggregate.function = sum, c(capacity_for_hh = "capacity"))
+
+full_data_water_info <- koboloops::affect_loop_to_parent(loops, main, aggregate.function = sum,"litres")
+
+full_data_water_info$average_water <- full_data_water_info$Aggregation_Result_litres / full_data_water_info$calc.household
+
 ```
 
 ## Bonus:
 
-TBD
+Instead of the total for the household, calculate the average amount of water per hh member.
+
+## Agenda 
+- 09:20 - 10:00 Day 1 review and feedback  
+  - Assigning results 
+- 10:00 - 12:30 Debugging **koboquest** 
+  - Looking at your errors  
+  - debug(), undebug()  
+- 14:00 - 14:30 Sharing tools
+- 15:30 - 16:30 Documentations **koboloops**
+  - If there is no documentation, check the Vignettes  
+  - If the Vignettes aren't enough, check the functions  
+  - Look at examples  
+  - Dataframes !! 
+- 17:00 - 19:00 R environments **surveyweights**
+
 
 ## Project plan
 
@@ -532,31 +689,48 @@ TBD
 - **Calculate weights** on the fly
 - **Calculate results**
 
-## Getting the weights ready
+## Getting the weights ready: download
 
 Exercise: 
 
 
-```{r, echo=F, eval = F}
+```{r, echo=T, eval = F}
 devtools::install_github("mabafaba/surveyweights",
-                        build_opts = c())
+
+                        
+``` 
+
+```{r, echo=T, eval = T}                        build_opts = c())
 library(surveyweights)
 ??surveyweights
+```
 
+## Getting the weights ready: use
+```{r, echo=T, eval = T}
 samplingframe <- read.csv("./exercise_material/sampling_fr.csv")
+data <- read.csv("./exercise_material/data_clean.csv")
+```
 
+```{r, echo=T, eval = F}
 myweightings <- weighting_fun_from_samplingframe(sampling.frame = samplingframe,
                                             data.stratum.column = "strata",
                                             sampling.frame.population.column = "population",
                                             sampling.frame.stratum.column = "strata")
 
 weights_full <- myweightings(data)
+```
+
+## Why not just use weights_full and be done ? 
+```{r, echo=T, eval = F}
 data$hoh.sex %>% table
 
-data_fhh <- data %>% filter(hoh.sex == "female")
+
+  data_fhh <- data %>% filter(hoh.sex == "female")
 
 weights_fhh <- myweightings(data_fhh)
+```
 
+```{r, echo=T, eval = F}
 weights_fhh %>% table
 weights_full %>% table
 ```
@@ -657,10 +831,17 @@ _If each combination of data types, hypothesis types and sampling strategy can b
 ## ![analysis flow hypegrammaR](./include/hypegrammaR_flowchart2.jpg)
 
 
-## Exercise 
+## Exercise install and load hypegrammaR
 
-Calculate the (weighted) average for respodent age for each district.
-See if there is a difference depending on the head of household
+
+```{r, echo=T, eval = F}
+devtools::install_github("ellieallien/hypegrammaR", build_opts = c())
+
+library(hypegrammaR)
+
+browseVignettes("hypegrammaR")
+```
+See if there is a difference on problems accessing latrines depending on the gender of the head of household
 
 
 # DAY 4
